@@ -48,14 +48,6 @@ def read_in_SQL(connection, query):
         print(f"An unexpected error occurred: {e}")
         return None
     
-def filter_add_accounts(df, low_n, high_n):
-    filtered_pivot_table = df[
-        (df.index.get_level_values('Account_Num') > low_n) & 
-        (df.index.get_level_values('Account_Num') < high_n) ]
-    try:
-        return filtered_pivot_table.sum(axis=0)   # Sum up along the columns
-    except: 
-        return 0
 
 def create_RP_pivot_table(df):
     '''
