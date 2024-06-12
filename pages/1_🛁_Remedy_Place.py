@@ -24,6 +24,7 @@ import hmac
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed", page_icon=":shark:")
 
+# see https://www.magicpattern.design/tools/css-backgrounds
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
