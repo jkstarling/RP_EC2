@@ -67,12 +67,16 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 # st.write(workdays)
 
 # get secrets from st.secrets
-host = st.secrets["host_kbd"]#os.getenv('host_kbd') 
-user = st.secrets["user_kbd"]#os.getenv('user_kbd')
-port = st.secrets["port_kbd"]#os.getenv('port_kbd')
-password = st.secrets["password_kbd"]#os.getenv('password_kbd')
-databasename = st.secrets["databasename_kbd"]#os.getenv('databasename_kbd')
-
+host = os.getenv('host_kdb') 
+user = os.getenv('user_kdb')
+port = int(os.getenv('port_kdb'))
+password = os.getenv('password_kdb')
+databasename = os.getenv('databasename_kdb')
+# host = st.secrets["host_kdb"]#os.getenv('host_kbd') 
+# user = st.secrets["user_kdb"]#os.getenv('user_kbd')
+# port = st.secrets["port_kdb"]#os.getenv('port_kbd')
+# password = st.secrets["password_kdb"]#os.getenv('password_kbd')
+# databasename = st.secrets["databasename_kdb"]#os.getenv('databasename_kbd')
 #### read in data
 query = """
 SELECT 
@@ -91,8 +95,13 @@ GROUP BY
     t.organization_id, o.title;
 """
 
-connection = RPf.make_connection(host, user, port, password, databasename)
-df = RPf.read_in_SQL(connection)
+connection = RPf.make_connection(host, user, port, password, databasename, "feature-server-key")
+
+st.write('hi')
+
+df = RPf.read_in_SQL(connection, query)
+
+st.dataframe(df)
 
 df = df.loc[(df.location != 'Admin') & (df.location != 'Not Specified') & (df.location != 'Saranac'),:]
 

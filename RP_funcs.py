@@ -8,9 +8,11 @@ import numpy as np
 import hmac
 import time
 
-def make_connection(host,user,port,password,databasename):
+def make_connection(host,user,port,password,databasename,public_key):
     connection = pymysql.connect(host=host,user=user,port=port, 
-                            password=password,database=databasename)
+                            password=password,
+                            database=databasename)#,
+                            # ssl_cert=public_key)
     return connection
 
 
