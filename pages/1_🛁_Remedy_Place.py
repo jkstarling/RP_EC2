@@ -36,7 +36,7 @@ background-size: 4px 4px;
 </style>
 """
 
-st.markdown(page_bg_img, unsafe_allow_html=True)
+# st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # st.set_page_config()
 
